@@ -92,4 +92,17 @@ sources:
           - unique:
               column_name:
                 - date_date
-    
+      - name: finance_campaigns_day
+        description: Joining the int_campaigns_day model with finance_days
+        columns:
+          - name: ads_margin
+            description: ads_margin = (operational_margin - ads_cost)
+          - name: average_basket
+            description: average basket cost for each day 
+        tests:
+          - not_null:
+              column_name:
+                - ads_margin
+                - average_basket
+              
+            
