@@ -86,4 +86,10 @@ sources:
               column_name:
                 - paid_source
                 - campaign_name
+      - name: int_campaigns_days
+        description: aggregated version of int_campaigns model for each day.
+        tests:
+          - unique:
+              column_name:
+                - date_date
     
