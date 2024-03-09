@@ -29,3 +29,80 @@ sources:
             tests:
               - not_null
               - unique
+      - name: adwords
+        identifier: raw_gz_adwords
+        description: Ads of Adwords
+        columns:
+          - name: date_date
+            description: date
+          - name: paid_source
+          - name: campaign_key
+          - name: camPGN_name
+          - name: ads_cost
+          - name: impression
+          - name: click
+      - name: bing
+        identifier: raw_gz_bing
+        description: Ads of Bing
+        columns:
+          - name: date_date
+            description: date
+          - name: paid_source
+          - name: campaign_key
+          - name: camPGN_name
+          - name: ads_cost
+          - name: impression
+          - name: click
+      - name: criteo
+        identifier: raw_gz_criteo
+        description: Ads of Criteo
+        columns:
+          - name: date_date
+            description: date
+          - name: paid_source
+          - name: campaign_key
+          - name: camPGN_name
+          - name: ads_cost
+          - name: impression
+          - name: click
+      - name: facebook
+        identifier: raw_gz_facebook
+        description: Ads of Facebook
+        columns:
+          - name: date_date
+            description: date
+          - name: paid_source
+          - name: campaign_key
+          - name: camPGN_name
+          - name: ads_cost
+          - name: impression
+          - name: click
+      - name: int_campaigns
+        description: data from all campaigns
+        tests:
+          - unique:
+              column_name: "(campaign_key || '-' || date_date)"
+          - not_null:
+              column_name:
+                - paid_source
+                - campaign_name
+      - name: int_campaigns_days
+        description: aggregated version of int_campaigns model for each day.
+        tests:
+          - unique:
+              column_name:
+                - date_date
+      - name: finance_campaigns_day
+        description: Joining the int_campaigns_day model with finance_days
+        columns:
+          - name: ads_margin
+            description: ads_margin = (operational_margin - ads_cost)
+          - name: average_basket
+            description: average basket cost for each day 
+        tests:
+          - not_null:
+              column_name:
+                - ads_margin
+                - average_basket
+              
+            
